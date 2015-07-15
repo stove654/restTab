@@ -1,0 +1,89 @@
+<ion-view class="background">
+    <ion-content scroll="false">
+        <div ng-if="!users.length">
+            <div fit horizontal layout center center-justified>
+                <div class="create-admin">
+                    <div class="img-admin">
+                    </div>
+                    <div class="form-create-admin">
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"><span translate="EMAIL_ADDRESS"></span></label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="admin.email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1" translate="PASSWORD"></label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="admin.password">
+                            </div>
+                            <div style="padding: 0 15px;overflow: hidden">
+                                <button type="button" class="btn btn-danger btn-md pull-right" ng-click="addUserAdmin()"><span translate="REGISTER_ADMIN"></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="users.length">
+            <div ng-if="!user.email">
+                <div fit horizontal layout center center-justified>
+                    <div class="list-staffs">
+                        <div class="title-res">RESTAURANT TABLET</div>
+                        <div class="all-staffs">
+                            <div class="staff" ng-repeat="item in users" ng-click="selectUser(item)">
+                                <div class="staff-logo" horizontal center-justified center layout>A</div>
+                                <div class="staff-Name">Admin</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="user.email">
+                <div fit horizontal layout center center-justified>
+                    <div class="back-login" ng-click="backListUsers()"><i class="mdi mdi-keyboard-backspace"></i></div>
+                    <div class="login-page">
+                        <div class="staff">
+                            <div class="staff-logo" horizontal center-justified center layout>A</div>
+                            <div class="staff-Name">Admin</div>
+                        </div>
+                        <div class="form-password">
+                            <div class="input-form-number">
+                                <div translate="PASSWORD" ng-show="!user.password"></div>
+                                <div ng-show="user.password">
+                                    <span ng-repeat="item in user.password track by $index ">*</span>
+                                </div>
+                            </div>
+                            <div class="form-number">
+                                <div class="numbers">
+                                    <div class="number" ng-repeat="n in numberForm" horizontal center-justified center layout ng-click="addNumber(n+1)">
+                                        {{n + 1}}
+                                    </div>
+                                    <div class="number" horizontal center-justified center layout>
+
+                                    </div>
+                                    <div class="number" horizontal center-justified center layout ng-click="addNumber(0)">
+                                        0
+                                    </div>
+                                    <div class="number" horizontal center-justified center layout>
+
+                                    </div>
+                                </div>
+                                <div class="sp-form-number">
+                                    <div class="back-number" horizontal center-justified center layout ng-click="backConfirmPass()">
+                                        <i class="mdi mdi-keyboard-backspace"></i>
+                                    </div>
+                                    <div class="clear-number" horizontal center-justified center layout ng-click="clearConfirmPass()">
+                                        C
+                                    </div>
+                                    <div class="confirm-number" horizontal center-justified center layout ng-click="login()">
+                                        <i class="mdi mdi-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

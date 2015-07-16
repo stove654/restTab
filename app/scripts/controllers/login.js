@@ -31,7 +31,7 @@ angular.module('restTabApp')
               name: '',
               email: $scope.admin.email,
               password: $scope.admin.password,
-              role: 1,
+              role: 0,
               roleText: 'Cashier'
             };
 
@@ -53,7 +53,7 @@ angular.module('restTabApp')
                 if ($scope.user.id == $scope.users[i].id && $scope.user.password == $scope.users[i].password) {
                     localStorageService.set('user', $scope.user);
                     if ($scope.user.role == 0) {
-                        $state.go('admin');
+                        $state.go('admin.menu');
                     }
                     if ($scope.user.role == 1) {
                         $state.go('cashier');
@@ -65,9 +65,7 @@ angular.module('restTabApp')
         };
 
         function init(){
-            UsersService.open().then(function(){
-              $scope.refreshList();
-            });
+            $scope.refreshList();
         }
 
         init();

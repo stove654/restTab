@@ -8,7 +8,7 @@
  * Service in the restTabApp.
  */
 angular.module('restTabApp')
-  .service('SessionService', function (localStorageService, $state) {
+  .service('SessionService', function (localStorageService) {
 
     var session = {};
 

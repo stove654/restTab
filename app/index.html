@@ -14,7 +14,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="styles/flex.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -41,6 +41,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -49,22 +50,29 @@
     <script src="bower_components/ionic/js/ionic-angular.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
 
-        <!--Controller-->
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/admin/admin.js"></script>
-        <script src="scripts/controllers/cashier/cashier.js"></script>
+    <!--Controller-->
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/admin/admin.js"></script>
+    <script src="scripts/controllers/admin/admin_menu.js"></script>
+    <script src="scripts/controllers/cashier/cashier.js"></script>
 
-        <!--Services-->
-        <script src="scripts/services/usersservice.js"></script>
-        <script src="scripts/services/session.js"></script>
+    <!--Services-->
+    <script src="scripts/services/usersservice.js"></script>
+    <script src="scripts/services/session.js"></script>
 
-        <!-- endbuild -->
+    <!--Directives-->
+    <script src="scripts/directives/select_language.js"></script>
+
+    <!-- endbuild -->
 </body>
 </html>

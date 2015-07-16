@@ -12,7 +12,9 @@ angular
   .module('restTabApp', [
         'ionic',
         'pascalprecht.translate',
-        'LocalStorageModule'
+        'LocalStorageModule',
+        'ui.bootstrap',
+        'config'
     ])
 
     .run(function ($rootScope, $state, $location, SessionService, localStorageService) {
@@ -33,7 +35,7 @@ angular
             // authenticated (previously) comming not to root main
             if(SessionService.isToken().isLoggedIn && localStorageService.get('user').role == 0) {
                 var shouldGoToMain = fromState.name === ''
-                    && toState.name !== 'admin' ;
+                    && toState.name !== 'admin.menu' ;
                 return;
             }
 
@@ -46,8 +48,7 @@ angular
         });
     })
 
-    .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-        $ionicConfigProvider.navBar.transition('none');
+    .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
         $stateProvider
             .state('login', {
                 url: "/login",
@@ -60,6 +61,16 @@ angular
                 controller: 'AdminCtrl',
                 data : {requireLogin : true }
             })
+            .state('admin.menu', {
+                url: "/menu",
+                views: {
+                    'menuAdminContent' :{
+                        templateUrl: "views/admin/admin_menu.html",
+                        controller: 'AdminMenuCtrl',
+                    }
+                },
+                data : {requireLogin : true }
+            })
             .state('cashier', {
                 url: "/cashier",
                 templateUrl: "views/cashier/cashier.html",
@@ -68,6 +79,27 @@ angular
             })
 
         $urlRouterProvider.otherwise("/login");
+
+        // Use x-www-form-urlencoded Content-Type
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/json';
+        $httpProvider.defaults.headers.common['Content-Type'] = $httpProvider.defaults.headers.post['Content-Type'];
+        $httpProvider.interceptors.push('loaderInterceptor');
+        $ionicConfigProvider.views.transition('none');
+    })
+
+    .factory('loaderInterceptor', function($rootScope, $q, $location, localStorageService, $injector) {
+        return {
+            'responseError' : function(response){
+
+                if (response.status == 401) {
+                    var state = $injector.get('$state');
+                    localStorageService.set('user', {});
+                    state.go('login');
+                }
+                return $q.reject(response);
+            }
+        };
     })
 
     //Config languages
@@ -78,12 +110,16 @@ angular
                 PASSWORD: 'Password',
                 LOGIN: 'Login',
                 REGISTER_ADMIN: 'Register',
+                ADMIN: 'Admin',
+                MENU: 'Menu'
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
                 PASSWORD: 'Mật khẩu',
                 LOGIN: 'Đăng nhập',
-                REGISTER_ADMIN: 'Đăng ký'
+                REGISTER_ADMIN: 'Đăng ký',
+                ADMIN: 'Quản trị',
+                MENU: 'Menu'
             });
         $translateProvider.preferredLanguage('vi');
     })

@@ -28,11 +28,11 @@ angular.module('restTabApp')
 
         $scope.addUserAdmin = function(){
             var data = {
-              name: '',
+              name: 'Admin',
               email: $scope.admin.email,
               password: $scope.admin.password,
               role: 0,
-              roleText: 'Cashier'
+              roleText: 'Admin'
             };
 
             UsersService.addUserAdmin(data).then(function(){
@@ -55,8 +55,8 @@ angular.module('restTabApp')
                     if ($scope.user.role == 0) {
                         $state.go('admin.menu');
                     }
-                    if ($scope.user.role == 1) {
-                        $state.go('cashier');
+                    if ($scope.user.role == 3) {
+                        $state.go('cashier.main');
                     }
                     break;
                 }

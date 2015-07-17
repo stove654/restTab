@@ -1,5 +1,73 @@
 <ion-view>
     <ion-content class="padding">
-        this is staff
+
+        <div class="create-staff">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="{{ 'FULL_NAME' | translate }}" ng-model="staff.name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="{{ 'EMAIL' | translate }}" ng-model="staff.email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="{{ 'PASSWORD' | translate }}" ng-model="staff.password">
+                </div>
+                <div class="form-group select-role">
+                    <span class="dropdown" dropdown on-toggle="toggled(open)">
+                      <span href class="dropdown-toggle" dropdown-toggle>
+                          <span ng-show="!staff.role"><span translate="ROLE"></span></span>
+                          <span ng-show="staff.role">{{staff.roleText}}</span>
+                      </span>
+                      <ul class="dropdown-menu">
+                          <li ng-click="selectRole(0)">
+                              <span translate="ADMIN"></span>
+                          </li>
+                          <li ng-click="selectRole(1)">
+                              <span translate="MANAGER"></span>
+                          </li>
+                          <li ng-click="selectRole(2)">
+                              <span translate="ACCOUNTANT"></span>
+                          </li>
+                          <li ng-click="selectRole(3)">
+                              <span translate="CASHIER"></span>
+                          </li>
+                          <li ng-click="selectRole(4)">
+                              <span translate="WAITER"></span>
+                          </li>
+                          <li ng-click="selectRole(5)">
+                              <span translate="BAR"></span>
+                          </li>
+                      </ul>
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="addStaff()"><span translate="ADD"></span></button>
+            </form>
+        </div>
+
+        <div class="staff-lists">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th><span translate="FULL_NAME"></span></th>
+                    <th><span translate="EMAIL"></span></th>
+                    <th><span translate="ROLE"></span></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in listStaffs">
+                    <td scope="row">{{$index + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.roleText}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning"><i class="mdi mdi-table-edit"></i></button>
+                        <button type="button" class="btn btn-danger"><i class="mdi mdi-close"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </ion-content>
 </ion-view>

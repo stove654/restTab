@@ -1,1 +1,3 @@
-{"name":"","email":"stove@gmail.com","password":"123456","role":0,"roleText":"Cashier","_id":"3Gxc2AF5xx36dTUw"}
+{"name":"Hoang Van Loi","email":"stove@gmail.com","password":"123456","role":0,"roleText":"Admin","_id":"3Gxc2AF5xx36dTUw"}
+{"name":"Harry Potter","email":"potter@gmail.com","password":"123456","role":3,"roleText":"Cashier","_id":"wIgBROXq3bpdrNmz"}
+{"name":"Jon Snow","email":"snow@gmail.com","password":"123456","role":3,"roleText":"Cashier","_id":"wggd3BkIEEfPPT3V"}

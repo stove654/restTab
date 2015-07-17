@@ -31,8 +31,8 @@
                         <div class="title-res">RESTAURANT TABLET</div>
                         <div class="all-staffs">
                             <div class="staff" ng-repeat="item in users" ng-click="selectUser(item)">
-                                <div class="staff-logo" horizontal center-justified center layout>A</div>
-                                <div class="staff-Name">Admin</div>
+                                <div class="staff-logo" horizontal center-justified center layout>{{item.name | limitTo:2}}</div>
+                                <div class="staff-Name">{{item.name}}</div>
                             </div>
                         </div>
                     </div>
@@ -43,8 +43,8 @@
                     <div class="back-login" ng-click="backListUsers()"><i class="mdi mdi-keyboard-backspace"></i></div>
                     <div class="login-page">
                         <div class="staff">
-                            <div class="staff-logo" horizontal center-justified center layout>A</div>
-                            <div class="staff-Name">Admin</div>
+                            <div class="staff-logo" horizontal center-justified center layout>{{user.name | limitTo:2}}</div>
+                            <div class="staff-Name">{{user.name}}</div>
                         </div>
                         <div class="form-password">
                             <div class="input-form-number">

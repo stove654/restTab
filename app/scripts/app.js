@@ -39,9 +39,9 @@ angular
                 return;
             }
 
-            if(SessionService.isToken().isLoggedIn && localStorageService.get('user').role == 1) {
+            if(SessionService.isToken().isLoggedIn && localStorageService.get('user').role == 3) {
                 var shouldGoToMain = fromState.name === ''
-                    && toState.name !== 'cashier' ;
+                    && toState.name !== 'cashier.main' ;
                 return;
             }
 
@@ -87,6 +87,16 @@ angular
                 controller: 'CashierCtrl',
                 data : {requireLogin : true }
             })
+            .state('cashier.main', {
+                url: "/main",
+                views: {
+                    'menuCashierContent' :{
+                        templateUrl: "views/cashier/cashier_main.html",
+                        controller: 'CashierMainCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
 
         $urlRouterProvider.otherwise("/login");
 
@@ -123,7 +133,16 @@ angular
                 ADMIN: 'Admin',
                 MENU: 'Menu',
                 NAME_CATEGORY: 'Name category',
-                STAFF: 'Staff manager'
+                STAFF: 'Staff manager',
+                FULL_NAME: 'Full name',
+                EMAIL: 'Email',
+                ROLE: 'Role',
+                ADD: 'Add',
+                MANAGER: 'Manager',
+                CASHIER: 'Cashier',
+                WAITER: 'Waiter',
+                BAR: 'Bar',
+                ACCOUNTANT: 'Accountant',
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -134,6 +153,15 @@ angular
                 MENU: 'Menu',
                 NAME_CATEGORY: 'Tên category',
                 STAFF: 'Quản lý nhân viên',
+                FULL_NAME: 'Tên đầy đủ',
+                EMAIL: 'Email',
+                ROLE: 'Chức vụ',
+                ADD: 'Thêm',
+                MANAGER: 'Quản lý',
+                CASHIER: 'Thu ngân',
+                WAITER: 'Phục vụ',
+                BAR: 'Nhân viên bar',
+                ACCOUNTANT: 'Kế toán',
             });
         $translateProvider.preferredLanguage('vi');
     })

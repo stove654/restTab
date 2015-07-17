@@ -9,58 +9,69 @@
  * Controller of the restTabApp
  */
 angular.module('restTabApp')
-  .controller('StaffMenuCtrl', function ($scope, MenuService) {
+  .controller('StaffMenuCtrl', function ($scope, UsersService) {
 
-      $scope.categories = [];
-      $scope.category = {};
-      $scope.categorySelected = {};
-      $scope.foods = [];
+        $scope.listRoles = [
+            {
+                name: 'Admin',
+                role: 0
+            },
+            {
+                name: 'Manager',
+                role: 1
+            },
+            {
+                name: 'Accountant',
+                role: 2
+            },
+            {
+                name: 'Cashier',
+                role: 3
+            },
+            {
+                name: 'Waiter',
+                role: 4
+            },
+            {
+                name: 'Bar',
+                role: 5
+            }
 
-      $scope.getCategories = function () {
-        MenuService.getCategories().then(function(data){
-          if (data.length) {
-            $scope.selectCategory(data[0]);
-            $scope.getFoodsByCategory();
-          }
-          $scope.categories = data;
-        }, function(err){
-          console.log(err);
-        });
-      };
+        ];
 
-      $scope.getFoodsByCategory = function () {
-        $scope.foods = [];
-        MenuService.getFoodsByCategory($scope.categorySelected._id).then(function(data){
-          $scope.foods = data;
-        }, function(err){
-          console.log(err);
-        });
-      };
+        $scope.staff = {};
 
-      $scope.createCategory = function () {
-        var params = {};
-        params.name = $scope.category.name;
-        params.children = [];
-        MenuService.createCategory(params).then(function(data){
-          _init();
-          $scope.category = {};
-        }, function(err){
-          console.log(err);
-        });
-      };
+        $scope.listStaffs = [];
 
-      $scope.selectCategory = function (item) {
-        $scope.categorySelected = item;
-        $scope.getFoodsByCategory();
-      };
+        $scope.selectRole = function (role) {
+            $scope.staff.role = role;
+            $scope.staff.roleText = $scope.listRoles[role].name;
+        };
 
-      $scope.createSubcategory = function () {
+        $scope.addStaff = function () {
+            var data = {
+                name: $scope.staff.name,
+                email: $scope.staff.email,
+                password: $scope.staff.password,
+                role: $scope.staff.role,
+                roleText: $scope.staff.roleText
+            };
 
-      };
+            UsersService.addUserAdmin(data).then(function(){
+                _init();
+                $scope.staff = {};
+            }, function(err){
+                console.log(err);
+            });
+        };
 
-      var _init = function () {
-        $scope.getCategories();
-      };
-      _init();
-
+        var _init = function () {
+            UsersService.getUsers().then(function(data){
+                $scope.listStaffs = data;
+                console.log($scope.listStaffs)
+            }, function(err){
+                console.log(err);
+            });
+        };
+        _init();
   });

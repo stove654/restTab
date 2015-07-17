@@ -292,3 +292,45 @@
   overflow: hidden;
   padding-bottom: 60px;
 }
+.staff-lists td {
+  height: 51px;
+  line-height: 50px !important;
+  padding: 0 10px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.staff-lists tr td:last-child {
+  text-align: center;
+}
+.create-staff input {
+  border: 1px solid #ddd !important;
+  padding: 5px 10px;
+}
+.select-role {
+  padding: 0 10px;
+}
+.select-role li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.create-staff {
+  padding: 10px 0;
+}
+.cashier-content {
+  width: 67%;
+  float: left;
+}
+.cashier-order {
+  width: 33%;
+  float: left;
+  left: initial;
+}
+.cashier-header-content {
+  background: #512DA8;
+  padding: 0;
+}
+.cashier-header-order {
+  background: #673dcb;
+  padding: 0;
+}

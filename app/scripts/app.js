@@ -66,7 +66,17 @@ angular
                 views: {
                     'menuAdminContent' :{
                         templateUrl: "views/admin/admin_menu.html",
-                        controller: 'AdminMenuCtrl',
+                        controller: 'AdminMenuCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
+            .state('admin.staff', {
+                url: "/staff",
+                views: {
+                    'menuAdminContent' :{
+                        templateUrl: "views/admin/admin_staff.html",
+                        controller: 'StaffMenuCtrl'
                     }
                 },
                 data : {requireLogin : true }
@@ -111,7 +121,9 @@ angular
                 LOGIN: 'Login',
                 REGISTER_ADMIN: 'Register',
                 ADMIN: 'Admin',
-                MENU: 'Menu'
+                MENU: 'Menu',
+                NAME_CATEGORY: 'Name category',
+                STAFF: 'Staff manager'
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -119,7 +131,9 @@ angular
                 LOGIN: 'Đăng nhập',
                 REGISTER_ADMIN: 'Đăng ký',
                 ADMIN: 'Quản trị',
-                MENU: 'Menu'
+                MENU: 'Menu',
+                NAME_CATEGORY: 'Tên category',
+                STAFF: 'Quản lý nhân viên',
             });
         $translateProvider.preferredLanguage('vi');
     })

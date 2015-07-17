@@ -369,6 +369,60 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: 'api/**'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: 'db/**'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: 'config/**'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: 'node_modules/**'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: 'fonts/**'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: '*.js'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: 'node_modules/**'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>/scripts',
+          dest: '<%= yeoman.dist %>/scripts',
+          src: 'directives/**'
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          dest: '<%= yeoman.dist %>',
+          src: '*.json'
         }]
       },
       styles: {
@@ -400,9 +454,19 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    nwjs: {
+      options: {
+        version: 'v0.12.2',
+        buildDir: '../build', // Where the build version of my NW.js app is saved
+        platforms: ['osx', 'win', 'linux'] // These are the platforms that we want to build
+      },
+      src:  ['<%= yeoman.dist %>/**/*']
     }
   });
 
+  grunt.loadNpmTasks('grunt-nw-builder');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -448,7 +512,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'nwjs'
   ]);
 
   grunt.registerTask('default', [

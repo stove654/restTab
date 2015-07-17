@@ -36,11 +36,12 @@ angular.module('restTabApp')
                 };
 
                 var _init = function () {
-                  if (localStorageService.get('language')) {
-                    $scope.selectedLang = localStorageService.get('language');
-                  } else {
-                    $scope.selectedLang = $scope.locales[0]
-                  }
+                    if (localStorageService.get('language')) {
+                        $scope.selectedLang = localStorageService.get('language');
+                    } else {
+                        $scope.selectedLang = $scope.locales[0]
+                    }
+                    $translate.use($scope.selectedLang.locate);
                 };
                 _init();
             }

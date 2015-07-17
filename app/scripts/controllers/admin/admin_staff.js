@@ -3,13 +3,13 @@
 
 /**
  * @ngdoc function
- * @name restTabApp.controller:AdminMenuCtrl
+ * @name restTabApp.controller:StaffMenuCtrl
  * @description
- * # AdminMenuCtrl
+ * # StaffMenuCtrl
  * Controller of the restTabApp
  */
 angular.module('restTabApp')
-  .controller('AdminMenuCtrl', function ($scope, MenuService) {
+  .controller('StaffMenuCtrl', function ($scope, MenuService) {
 
       $scope.categories = [];
       $scope.category = {};

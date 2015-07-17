@@ -217,7 +217,6 @@
     border: none;
     color: #fff;
     font-size: 20px;
-    border-bottom: 1px solid #fff;
   }
   .content-admin {
     background-color: #1c2b36;
@@ -268,9 +267,50 @@
     &.active {
       background-color: #A93B3B;
     }
+    &.activated {
+      background-color: #A93B3B;
+    }
+    &:active {
+      background-color: #A93B3B;
+    }
   }
 }
 .close-menu {
   width: 60px;
   font-size: 20px;
+}
+.create-category {
+  height: 42px;
+  max-width: 240px;
+  padding: 0 20px;
+  input {
+    border: 1px solid #ddd;
+    padding: 0 10px;
+  }
+}
+.categories ul li {
+  text-transform: capitalize;
+}
+.width-1-4 {
+  width: 20%;
+  float: left;
+  padding: 5px;
+}
+.food {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(32,43,54,.5);
+  width: 100%;
+  padding: 10px 5px;
+  color: #fff;
+  text-transform: capitalize;
+}
+.text-dot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.list-foods {
+  overflow: hidden;
+  padding-bottom: 60px;
 }

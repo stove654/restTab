@@ -1,5 +1,35 @@
 <ion-view>
-    <ion-content>
-        this is menu
+    <ion-content scroll="false" class="padding">
+        <tabset class="categories">
+            <tab ng-repeat="item in categories" ng-click="selectCategory(item)">
+                <tab-heading>
+                    {{item.name}}
+                </tab-heading>
+                <div class="content-tabs">
+                    <ion-scroll direction="y" style="position: absolute;height: 100%;">
+                        <div class="list-foods">
+                            <div class="width-1-4" ng-repeat="item in foods">
+                                <div style="position: relative">
+                                    <img ng-src="{{item.intro_img}}" class="img-responsive" ng-if="item.intro_img"/>
+                                    <img src="./images/no_image.jpg" class="img-responsive" ng-if="!item.intro_img"/>
+                                    <div class="food">
+                                        <div class="food-name text-dot">{{item.name}}</div>
+                                        <div class="food-name">{{item.price || currency}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-scroll>
+                </div>
+            </tab>
+            <div class="create-category" horizontal center layout>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="{{ 'NAME_CATEGORY' | translate }}" ng-model="category.name">
+                    <span class="input-group-btn" ng-click="createCategory()">
+                        <button class="btn btn-primary" type="button"><i class="mdi mdi-plus"></i></button>
+                    </span>
+                </div>
+            </div>
+        </tabset>
     </ion-content>
 </ion-view>

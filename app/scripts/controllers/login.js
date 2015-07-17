@@ -142,9 +142,9 @@ angular.module('restTabApp')
                 e.preventDefault();
                 $scope.$apply($scope.addNumber(number));
             }
-          /*  if (e.keyCode == 13 && $scope.data.credentials.email) {
+            if (e.keyCode == 13 && $scope.user.email) {
                 $scope.$apply($scope.login());
-            }*/
+            }
         };
         window.addEventListener("keydown", keyBoard);
 

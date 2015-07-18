@@ -1,0 +1,59 @@
+<ion-content scroll="false" horizontal layout>
+    <ion-content class="list-categories">
+        <ul>
+            <li ng-repeat="item in categories" horizontal center-justified center layout ng-click="selectCategory(item)" ng-class="{active: categorySelected._id == item._id}">
+                <a>{{item.name}}</a>
+            </li>
+        </ul>
+    </ion-content>
+    <ion-content class="list-menus" flex>
+        <div class="break-menu" horizontal layout>
+            <div>
+
+            </div>
+            <div flex></div>
+            <div class="select-column">
+                <div class="btn-group open" dropdown="" is-open="status.isopen">
+                    <button type="button" class="btn btn-default dropdown-toggle ng-binding" dropdown-toggle="" aria-haspopup="true" aria-expanded="true">
+                        {{numberGrid}} <span translate="COLS">Cols</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-colum" role="menu">
+                        <li ng-click="selectNumberGrid(2)">2</li>
+                        <li ng-click="selectNumberGrid(3)">3</li>
+                        <li ng-click="selectNumberGrid(4)">4</li>
+                        <li ng-click="selectNumberGrid(6)">6</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="select-column">
+                <div class="btn-group" dropdown="" is-open="status1.isopen">
+                    <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
+                        <span translate="SORT_BY">Sort by</span>
+                        <span ng-show="filterFoods" class="ng-hide"><span translate="NAME">name</span></span>
+                        <span ng-show="!filterFoods"><span translate="DATE">date</span></span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-click="selectFilter('name')" style="text-transform: capitalize;"><span translate="NAME">name</span></li>
+                        <li ng-click="selectFilter(null)" style="text-transform: capitalize;"><span translate="DATE">date</span></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="list-foods">
+            <div class="width-1-{{numberGrid}}" ng-repeat="item in foods">
+                <div style="position: relative">
+                    <img ng-src="{{item.intro_img}}" class="img-responsive" ng-if="item.intro_img"/>
+                    <img src="./images/no_image.jpg" class="img-responsive" ng-if="!item.intro_img"/>
+                    <div class="food">
+                        <div class="food-name text-dot">{{item.name}}</div>
+                        <div class="food-name">{{item.price || currency}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-content>
+

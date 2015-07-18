@@ -97,6 +97,16 @@ angular
                 },
                 data : {requireLogin : true }
             })
+            .state('cashier.menu', {
+                url: "/menu",
+                views: {
+                    'menuCashierContent' :{
+                        templateUrl: "views/cashier/cashier_menu.html",
+                        controller: 'CashierMenuCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
 
         $urlRouterProvider.otherwise("/login");
 
@@ -143,6 +153,10 @@ angular
                 WAITER: 'Waiter',
                 BAR: 'Bar',
                 ACCOUNTANT: 'Accountant',
+                COLS: 'Cols',
+                SORT_BY: 'Sort by',
+                NAME: 'Name',
+                DATE: 'Date',
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -162,6 +176,10 @@ angular
                 WAITER: 'Phục vụ',
                 BAR: 'Nhân viên bar',
                 ACCOUNTANT: 'Kế toán',
+                COLS: 'Số cột',
+                SORT_BY: 'Sắp xếp theo',
+                NAME: 'Tên',
+                DATE: 'Ngày',
             });
         $translateProvider.preferredLanguage('vi');
     })

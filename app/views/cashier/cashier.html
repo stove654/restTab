@@ -1,18 +1,21 @@
 <ion-side-menus enable-menu-with-back-views="false">
 
     <ion-side-menu-content>
-        <!--<ion-nav-bar class="bar-positive">
-            <ion-nav-back-button>
-            </ion-nav-back-button>
-
-            <ion-nav-buttons side="left">
-                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
-                </button>
-            </ion-nav-buttons>
-        </ion-nav-bar>-->
         <ion-view class="cashier-content">
-            <ion-header-bar class="cashier-header-content">
-
+            <ion-header-bar class="cashier-header-content" horizontal layout>
+                <div class="avatar-waiter">
+                    <img src="./images/avatar-waiter.png"/>
+                </div>
+                <div class="name-res" horizontal center-justified center layout>
+                    <div>
+                        <div>{{user.name}}</div>
+                        <div>RestTab</div>
+                    </div>
+                </div>
+                <div flex></div>
+                <a class="tab-active" horizontal center-justified center layout ui-sref="cashier.menu" ui-sref-active="active">
+                    <i class="mdi mdi-apps"></i>
+                </a>
             </ion-header-bar>
             <ion-nav-view name="menuCashierContent"></ion-nav-view>
         </ion-view>
@@ -33,7 +36,8 @@
         <ion-content>
             <ul class="list">
                 <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
-                <a href="#/event/check-in" class="item" menu-close>Check-in</a>
+                <a href="#/event/check-in" class="item" menu-close>            <select-language></select-language>
+                </a>
                 <a href="#/event/attendees" class="item" menu-close>Attendees</a>
             </ul>
         </ion-content>

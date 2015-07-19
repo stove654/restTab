@@ -56,7 +56,7 @@ angular.module('restTabApp')
                         $state.go('admin.menu');
                     }
                     if ($scope.user.role == 3) {
-                        $state.go('cashier.main');
+                        $state.go('cashier.menu');
                     }
                     break;
                 }

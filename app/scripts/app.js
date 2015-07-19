@@ -157,6 +157,8 @@ angular
                 SORT_BY: 'Sort by',
                 NAME: 'Name',
                 DATE: 'Date',
+                SEARCH_FOOD: 'Search food',
+                CANCEL: 'Cancel',
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -180,6 +182,8 @@ angular
                 SORT_BY: 'Sắp xếp theo',
                 NAME: 'Tên',
                 DATE: 'Ngày',
+                SEARCH_FOOD: 'Tìm món',
+                CANCEL: 'Hủy',
             });
         $translateProvider.preferredLanguage('vi');
     })

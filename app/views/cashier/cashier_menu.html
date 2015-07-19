@@ -8,8 +8,8 @@
     </ion-content>
     <ion-content class="list-menus" flex>
         <div class="break-menu" horizontal layout>
-            <div>
-
+            <div class="input-search-food">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ 'SEARCH_FOOD' | translate }}" ng-model="search.name">
             </div>
             <div flex></div>
             <div class="select-column">
@@ -21,6 +21,7 @@
                         <li ng-click="selectNumberGrid(2)">2</li>
                         <li ng-click="selectNumberGrid(3)">3</li>
                         <li ng-click="selectNumberGrid(4)">4</li>
+                        <li ng-click="selectNumberGrid(5)">5</li>
                         <li ng-click="selectNumberGrid(6)">6</li>
                     </ul>
                 </div>
@@ -30,20 +31,20 @@
                 <div class="btn-group" dropdown="" is-open="status1.isopen">
                     <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">
                         <span translate="SORT_BY">Sort by</span>
-                        <span ng-show="filterFoods" class="ng-hide"><span translate="NAME">name</span></span>
-                        <span ng-show="!filterFoods"><span translate="DATE">date</span></span>
+                        <span ng-show="searchText" class="ng-hide"><span translate="NAME">name</span></span>
+                        <span ng-show="!searchText"><span translate="DATE">date</span></span>
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul class="dropdown-menu dropdown-sort" role="menu">
                         <li ng-click="selectFilter('name')" style="text-transform: capitalize;"><span translate="NAME">name</span></li>
-                        <li ng-click="selectFilter(null)" style="text-transform: capitalize;"><span translate="DATE">date</span></li>
+                        <li ng-click="selectFilter()" style="text-transform: capitalize;"><span translate="DATE">date</span></li>
                     </ul>
                 </div>
 
             </div>
         </div>
         <div class="list-foods">
-            <div class="width-1-{{numberGrid}}" ng-repeat="item in foods">
+            <div class="width-1-{{numberGrid}}" ng-repeat="item in foods | orderBy:searchText | filter:search.name" ng-click="openFood(item)">
                 <div style="position: relative">
                     <img ng-src="{{item.intro_img}}" class="img-responsive" ng-if="item.intro_img"/>
                     <img src="./images/no_image.jpg" class="img-responsive" ng-if="!item.intro_img"/>

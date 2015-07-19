@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h4 class="modal-title bold">{{food.name}} <span class="pull-right">{{food.subTotal | currency}}</span></h4>
+</div>
+<div class="modal-body modal-body-food">
+    <div class="list-options" ng-repeat="option in food.options" ng-click="selectedOption(option)" >
+        <div class="option" ng-class="{active: option.selected}">
+            <div class="name-option bold">
+                {{option.name}}
+            </div>
+            <div class="price-option">
+                {{option.price | currency}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()"><span translate="ADD"></span></button>
+    <button class="btn btn-warning pull-left" ng-click="cancel()"><span translate="CANCEL"></span></button>
+</div>

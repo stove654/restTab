@@ -8,13 +8,14 @@
  * Controller of the restTabApp
  */
 angular.module('restTabApp')
-  .controller('CashierMenuCtrl', function ($scope, MenuService, localStorageService) {
-      $scope.categories = [];
-      $scope.categorySelected = {};
-      $scope.foods = [];
-      $scope.numberGrid = 3;
+    .controller('CashierMenuCtrl', function ($scope, MenuService, localStorageService, $modal) {
+        $scope.categories = [];
+        $scope.categorySelected = {};
+        $scope.foods = [];
+        $scope.numberGrid = 3;
+        $scope.searchText = '';
 
-      $scope.getCategories = function () {
+        $scope.getCategories = function () {
         MenuService.getCategories().then(function(data){
           if (data.length) {
             $scope.selectCategory(data[0]);
@@ -22,35 +23,74 @@ angular.module('restTabApp')
           }
           $scope.categories = data;
         }, function(err){
-          console.log(err);
+            console.log(err);
         });
-      };
+        };
 
-      $scope.getFoodsByCategory = function () {
+        $scope.getFoodsByCategory = function () {
         $scope.foods = [];
         MenuService.getFoodsByCategory($scope.categorySelected._id).then(function(data){
-          $scope.foods = data;
+            $scope.foods = data;
         }, function(err){
-          console.log(err);
+            console.log(err);
         });
-      };
+        };
 
 
-      $scope.selectCategory = function (item) {
-        $scope.categorySelected = item;
-        $scope.getFoodsByCategory();
-      };
+        $scope.selectCategory = function (item) {
+            $scope.categorySelected = item;
+            $scope.getFoodsByCategory();
+        };
 
-      $scope.selectNumberGrid = function (grid) {
-        $scope.numberGrid = grid;
-        localStorageService.set('numberGrid', grid)
-      };
+        $scope.selectNumberGrid = function (grid) {
+            $scope.numberGrid = grid;
+            localStorageService.set('numberGrid', grid)
+        };
 
-      var _init = function () {
-        if (localStorageService.get('numberGrid')) {
-          $scope.numberGrid = localStorageService.get('numberGrid')
-        }
-        $scope.getCategories();
-      };
-      _init();
-  });
+        $scope.selectFilter = function (name) {
+            if (name) {
+                $scope.searchText = name;
+            } else {
+                $scope.searchText = ''
+            }
+            localStorageService.set('searchText', $scope.searchText)
+        };
+
+        $scope.openFood = function (data) {
+            var food = angular.copy(data);
+            food.quantity = 1;
+            if (food.options.length) {
+                var modalInstance = $modal.open({
+                    animation: false,
+                    templateUrl: 'views/cashier/modal/food.html',
+                    controller: 'CashierFoodCtrl',
+                    size: 'md',
+                    windowClass: 'default-modal',
+                    scope: $scope,
+                    resolve: {
+                        food: function () {
+                            return food;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (food) {
+                    console.log(food);
+                }, function () {
+
+                });
+            }
+
+        };
+
+        var _init = function () {
+            if (localStorageService.get('numberGrid')) {
+                $scope.numberGrid = localStorageService.get('numberGrid')
+            }
+            if (localStorageService.get('searchText')) {
+                $scope.searchText = localStorageService.get('searchText');
+            }
+            $scope.getCategories();
+        };
+        _init();
+    });

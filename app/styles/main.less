@@ -333,6 +333,7 @@
 .list-foods {
   overflow: hidden;
   padding-bottom: 60px;
+  padding: 8px;
 }
 .staff-lists {
   td {
@@ -370,19 +371,25 @@
 .cashier-content {
   width: 67%;
   float: left;
+  .pane {
+    background-color: #eee;
+  }
 }
 .cashier-order {
   width: 33%;
   float: left;
   left: initial;
+  box-shadow: 0 0 3px #626262;
 }
 .cashier-header-content {
   background: #512DA8;
   padding: 0;
+  border: none;
 }
 .cashier-header-order {
   background: #673dcb;
   padding: 0;
+  border: none;
 }
 .avatar-waiter {
   img {
@@ -436,7 +443,7 @@ a {
   margin-left: 95px;
 }
 .select-column {
-  padding: 10px;
+  padding: 0 10px;
 }
 .dropdown-colum {
   min-width: 90px;
@@ -445,4 +452,64 @@ a {
     padding: 10px;
     border-bottom: 1px solid #ddd;
   }
+}
+.dropdown-sort {
+  min-width: 115px;
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+.break-menu {
+  padding-top: 10px;
+}
+.input-search-food {
+  padding: 0 10px;
+  input {
+    border: 1px solid gray;
+    padding: 5px 10px;
+  }
+}
+.modal {
+  background-color: initial;
+  min-height: initial;
+  width: initial;
+}
+.default-modal {
+  display: -webkit-flex!important;
+  display: flex!important;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.bold {
+  font-weight: 600;
+}
+.modal-body-food {
+  padding: 7.5px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.list-options {
+  width: 100%/3;
+  float: left;
+  padding: 7.5px;
+  .option {
+    border: 1px solid #ddd;
+    padding: 7.5px;
+    color: #333;
+    &.active {
+      color: #fff;
+      background-color: #333;
+    }
+
+  }
+}
+.price-option {
+  font-size: 12px;
+}
+.name-option {
 }

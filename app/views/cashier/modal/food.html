@@ -14,6 +14,20 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()"><span translate="ADD"></span></button>
-    <button class="btn btn-warning pull-left" ng-click="cancel()"><span translate="CANCEL"></span></button>
+    <div class="group-food" horizontal layout>
+        <div class="food-note" flex>
+            <textarea type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ 'NOTE' | translate }}" ng-model="food.note"></textarea>
+        </div>
+        <div class="quantity">
+            <div horizontal layout>
+                <div class="button button-custom" horizontal layout center center-justified ng-click="subQuantity()"><i class="mdi mdi-minus"></i></div>
+                <div class="food-quantity" horizontal layout center center-justified>{{food.quantity}}</div>
+                <div class="button button-custom" horizontal layout center center-justified ng-click="addQuantity()"><i class="mdi mdi-plus"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="group-button">
+        <button class="btn btn-primary" ng-click="ok()"><span translate="ADD"></span></button>
+        <button class="btn btn-warning pull-left" ng-click="cancel()"><span translate="CANCEL"></span></button>
+    </div>
 </div>

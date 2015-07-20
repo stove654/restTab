@@ -8,7 +8,7 @@
  * Controller of the restTabApp
  */
 angular.module('restTabApp')
-    .controller('CashierMenuCtrl', function ($scope, MenuService, localStorageService, $modal) {
+    .controller('CashierMenuCtrl', function ($scope, MenuService, localStorageService, $modal, FoodService) {
         $scope.categories = [];
         $scope.categorySelected = {};
         $scope.foods = [];
@@ -16,26 +16,25 @@ angular.module('restTabApp')
         $scope.searchText = '';
 
         $scope.getCategories = function () {
-        MenuService.getCategories().then(function(data){
-          if (data.length) {
-            $scope.selectCategory(data[0]);
-            $scope.getFoodsByCategory();
-          }
-          $scope.categories = data;
-        }, function(err){
-            console.log(err);
-        });
+            MenuService.getCategories().then(function(data){
+              if (data.length) {
+                $scope.selectCategory(data[0]);
+                $scope.getFoodsByCategory();
+              }
+              $scope.categories = data;
+            }, function(err){
+                console.log(err);
+            });
         };
 
         $scope.getFoodsByCategory = function () {
         $scope.foods = [];
         MenuService.getFoodsByCategory($scope.categorySelected._id).then(function(data){
-            $scope.foods = data;
-        }, function(err){
-            console.log(err);
-        });
+                $scope.foods = data;
+            }, function(err){
+                console.log(err);
+            });
         };
-
 
         $scope.selectCategory = function (item) {
             $scope.categorySelected = item;
@@ -75,10 +74,13 @@ angular.module('restTabApp')
                 });
 
                 modalInstance.result.then(function (food) {
-                    console.log(food);
+                    $scope.addFoodOrder(food);
                 }, function () {
 
                 });
+            } else {
+                FoodService.subTotalFood(food);
+                $scope.addFoodOrder(food);
             }
 
         };

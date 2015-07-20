@@ -20,12 +20,66 @@
             <ion-nav-view name="menuCashierContent"></ion-nav-view>
         </ion-view>
         <ion-view class="cashier-order">
-            <ion-header-bar class="cashier-header-order">
-
+            <ion-header-bar class="cashier-header-order" horizontal layout>
+                <div flex horizontal start-justified center layout class="table-order bold" ui-sref="cashier.table">
+                    <span ng-show="!order.table" translate="TABLE"></span>
+                    <span ng-show="order.table">{{order.table.name}}</span>
+                    <i class="mdi mdi-menu-down"></i>
+                </div>
+                <div class="button-order dropdown" horizontal start-justified center layout dropdown on-toggle="toggled(open)">
+                    <div class="button-order-child bold" horizontal start-justified center layout class="dropdown-toggle" dropdown-toggle>
+                        <i class="mdi mdi-account-multiple-plus"></i>{{order.customerNumber}}
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li>
+                            fdsafdds
+                        </li>
+                    </ul>
+                </div>
             </ion-header-bar>
-            <ion-content>
-                this is content order
+            <ion-content style="bottom: 150px">
+                <div ng-if="order.foods.length" class="list-order-foods">
+                    <div class="food-order padding-5" ng-repeat="item in order.foods" >
+                        <div horizontal layout>
+                            <div flex horizontal center layout class="name-order-food text-dot padding-5">
+                                {{item.name}}
+                            </div>
+                            <div horizontal center layout class="discount-order-food padding-5" ng-if="item.discount">
+                                <i class="mdi mdi-tag-text-outline"></i>
+                            </div>
+                            <div horizontal center layout class="quantity-order-food padding-5">
+                                &times;{{item.quantity}}
+                            </div>
+                            <div horizontal center layout class="subtotal-order-food padding-5">
+                                {{item.subTotal | currency}}
+                            </div>
+                        </div>
+                        <div class="list-food-options-order">
+                            - <span ng-repeat="option in item.options" ng-if="option.selected"> {{option.name}}, </span>
+                        </div>
+                        <div class="list-food-options-order" ng-if="item.note">
+                            - note: {{item.note}}
+                        </div>
+                    </div>
+                </div>
             </ion-content>
+            <ion-footer-bar class="footer-bar-order padding-5">
+                <div class="order-total padding-5" horizontal layout center>
+                    <span translate="TOTAL"></span>
+                    <span flex></span>
+                    <span class="pull-right">{{order.total | currency}}</span>
+                </div>
+                <div class="group-list-button-app padding-5">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default" translate="PRINT">Left</button>
+                        <button type="button" class="btn btn-default" translate="TAXES">Middle</button>
+                        <button type="button" class="btn btn-default" translate="DISCOUNTS">Right</button>
+                    </div>
+                </div>
+                <div class="group-button-action-order padding-5">
+                    <button class="button button-full button-assertive" ng-click="createOrder()"><span translate="CREATE_NEW_ORDER">Create new order</span></button>
+                </div>
+            </ion-footer-bar>
         </ion-view>
     </ion-side-menu-content>
 

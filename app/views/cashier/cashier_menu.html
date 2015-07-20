@@ -40,12 +40,11 @@
                         <li ng-click="selectFilter()" style="text-transform: capitalize;"><span translate="DATE">date</span></li>
                     </ul>
                 </div>
-
             </div>
         </div>
         <div class="list-foods">
             <div class="width-1-{{numberGrid}}" ng-repeat="item in foods | orderBy:searchText | filter:search.name" ng-click="openFood(item)">
-                <div style="position: relative">
+                <div style="position: relative;  border: 1px solid #ddd;">
                     <img ng-src="{{item.intro_img}}" class="img-responsive" ng-if="item.intro_img"/>
                     <img src="./images/no_image.jpg" class="img-responsive" ng-if="!item.intro_img"/>
                     <div class="food">

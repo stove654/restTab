@@ -107,6 +107,16 @@ angular
                 },
                 data : {requireLogin : true }
             })
+            .state('cashier.table', {
+                url: "/table",
+                views: {
+                    'menuCashierContent' :{
+                        templateUrl: "views/cashier/cashier_table.html",
+                        controller: 'CashierTableCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
 
         $urlRouterProvider.otherwise("/login");
 
@@ -159,6 +169,12 @@ angular
                 DATE: 'Date',
                 SEARCH_FOOD: 'Search food',
                 CANCEL: 'Cancel',
+                NOTE: 'Note',
+                TABLE: 'Table',
+                CREATE_NEW_ORDER: 'Create new order',
+                PRINT: 'Print',
+                TAXES: 'Taxes',
+                DISCOUNTS: 'Discounts',
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -184,6 +200,12 @@ angular
                 DATE: 'Ngày',
                 SEARCH_FOOD: 'Tìm món',
                 CANCEL: 'Hủy',
+                NOTE: 'Ghi chú',
+                TABLE: 'Bàn',
+                CREATE_NEW_ORDER: 'Tạo order mới',
+                PRINT: 'In',
+                TAXES: 'Thuế',
+                DISCOUNTS: 'Giảm giá',
             });
         $translateProvider.preferredLanguage('vi');
     })

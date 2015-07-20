@@ -22,6 +22,18 @@ angular.module('restTabApp')
             FoodService.subTotalFood(food);
         };
 
+        $scope.subQuantity = function () {
+            if (food.quantity > 1) {
+                food.quantity --;
+                FoodService.subTotalFood(food);
+            }
+        };
+
+        $scope.addQuantity = function () {
+            food.quantity ++;
+            FoodService.subTotalFood(food);
+        };
+
         $scope.ok = function () {
             $modalInstance.close($scope.food);
         };

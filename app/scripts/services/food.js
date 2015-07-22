@@ -20,6 +20,7 @@ angular.module('restTabApp')
                 if (value.selected) {
                     totalOneFood += value.price;
                     data.customId = data.customId + value.name;
+                    data.isOptions = true;
                 }
             });
             data.subTotal = totalOneFood * data.quantity;

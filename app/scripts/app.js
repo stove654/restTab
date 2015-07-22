@@ -14,7 +14,8 @@ angular
         'pascalprecht.translate',
         'LocalStorageModule',
         'ui.bootstrap',
-        'config'
+        'config',
+        'ui.utils.masks'
     ])
 
     .run(function ($rootScope, $state, $location, SessionService, localStorageService) {
@@ -81,6 +82,26 @@ angular
                 },
                 data : {requireLogin : true }
             })
+            .state('admin.taxes', {
+                url: "/taxes",
+                views: {
+                    'menuAdminContent' :{
+                        templateUrl: "views/admin/admin_taxes.html",
+                        controller: 'TaxesCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
+            .state('admin.discounts', {
+                url: "/discounts",
+                views: {
+                    'menuAdminContent' :{
+                        templateUrl: "views/admin/admin_discounts.html",
+                        controller: 'DiscountsCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
             .state('cashier', {
                 url: "/cashier",
                 templateUrl: "views/cashier/cashier.html",
@@ -113,6 +134,36 @@ angular
                     'menuCashierContent' :{
                         templateUrl: "views/cashier/cashier_table.html",
                         controller: 'CashierTableCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
+            .state('cashier.taxes', {
+                url: "/taxes",
+                views: {
+                    'menuCashierContent' :{
+                        templateUrl: "views/cashier/cashier_taxes.html",
+                        controller: 'TaxesCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
+            .state('cashier.discounts', {
+                url: "/discounts",
+                views: {
+                    'menuCashierContent' :{
+                        templateUrl: "views/cashier/cashier_discounts.html",
+                        controller: 'DiscountsCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
+            .state('cashier.orders', {
+                url: "/orders",
+                views: {
+                    'menuCashierContent' :{
+                        templateUrl: "views/cashier/cashier_orders.html",
+                        controller: 'CashierOrdersCtrl'
                     }
                 },
                 data : {requireLogin : true }
@@ -175,6 +226,12 @@ angular
                 PRINT: 'Print',
                 TAXES: 'Taxes',
                 DISCOUNTS: 'Discounts',
+                AMOUNT: 'Amount',
+                RATE: 'Rate',
+                TOTAL: 'Total',
+                TOTAL_TAXES: 'Total taxes',
+                TOTAL_DISCOUNTS: 'Total discounts',
+                RESEND: 'Resend',
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -206,6 +263,12 @@ angular
                 PRINT: 'In',
                 TAXES: 'Thuế',
                 DISCOUNTS: 'Giảm giá',
+                AMOUNT: 'Tiền',
+                RATE: 'Phần trăm',
+                TOTAL: 'Tổng tiền',
+                TOTAL_TAXES: 'Tổng tiền thuế',
+                TOTAL_DISCOUNTS: 'Tổng tiền giảm giá',
+                RESEND: 'Gửi lại',
             });
         $translateProvider.preferredLanguage('vi');
     })

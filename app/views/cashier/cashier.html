@@ -13,6 +13,10 @@
                     </div>
                 </div>
                 <div flex></div>
+                <a class="tab-active" horizontal center-justified center layout ui-sref="cashier.orders" ui-sref-active="active">
+                    <i class="mdi mdi-basket"></i>
+                    <span class="badge-orders" horizontal center-justified center layout>{{listOrders.length}}</span>
+                </a>
                 <a class="tab-active" horizontal center-justified center layout ui-sref="cashier.menu" ui-sref-active="active">
                     <i class="mdi mdi-apps"></i>
                 </a>
@@ -54,12 +58,34 @@
                                 {{item.subTotal | currency}}
                             </div>
                         </div>
-                        <div class="list-food-options-order">
+                        <div class="list-food-options-order" ng-if="item.isOptions">
                             - <span ng-repeat="option in item.options" ng-if="option.selected"> {{option.name}}, </span>
                         </div>
                         <div class="list-food-options-order" ng-if="item.note">
                             - note: {{item.note}}
                         </div>
+                    </div>
+                </div>
+                <div ng-if="order.taxes.length" class="list-order-tax-discount">
+                    <div class="header-tax-discount" style="background-color: #689F38;padding: 5px 10px;color: #fff;"><span translate="TOTAL_TAXES"></span> <span class="pull-right">{{order.totalTaxes | currency}}</span></div>
+                    <div class="order-list-taxes-discounts" ng-repeat="item in order.taxes" horizontal center layout>
+                        <span class="padding-5" ng-click="deleteTax($index)"><i class="mdi mdi-close"></i></span>
+                        <span flex>{{item.name}}</span>
+                        <span style="padding: 0 10px">
+                            <span ng-show="item.amount">{{item.amount | currency}}</span>
+                            <span ng-show="item.rate">{{item.rate}}%</span>
+                        </span>
+                    </div>
+                </div>
+                <div ng-if="order.discounts.length" class="list-order-tax-discount">
+                    <div class="header-tax-discount" style="background-color: #F57C00;padding: 5px 10px;color: #fff;"><span translate="TOTAL_DISCOUNTS"></span> <span class="pull-right">{{order.totalDiscounts | currency}}</span></div>
+                    <div class="order-list-taxes-discounts" ng-repeat="item in order.discounts" horizontal center layout>
+                        <span class="padding-5" ng-click="deleteDiscount($index)"><i class="mdi mdi-close"></i></span>
+                        <span flex>{{item.name}}</span>
+                        <span style="padding: 0 10px">
+                            <span ng-show="item.amount">{{item.amount | currency}}</span>
+                            <span ng-show="item.rate">{{item.rate}}%</span>
+                        </span>
                     </div>
                 </div>
             </ion-content>
@@ -71,13 +97,14 @@
                 </div>
                 <div class="group-list-button-app padding-5">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default" translate="PRINT">Left</button>
-                        <button type="button" class="btn btn-default" translate="TAXES">Middle</button>
-                        <button type="button" class="btn btn-default" translate="DISCOUNTS">Right</button>
+                        <button type="button" class="btn btn-default" translate="PRINT"></button>
+                        <button type="button" class="btn btn-default" translate="TAXES" ui-sref="cashier.taxes" ui-sref-active="active"></button>
+                        <button type="button" class="btn btn-default" translate="DISCOUNTS" ui-sref="cashier.discounts" ui-sref-active="active"></button>
                     </div>
                 </div>
                 <div class="group-button-action-order padding-5">
-                    <button class="button button-full button-assertive" ng-click="createOrder()"><span translate="CREATE_NEW_ORDER">Create new order</span></button>
+                    <button class="button button-full button-assertive" ng-click="createOrder()" ng-if="!order.status"><span translate="CREATE_NEW_ORDER">Create new order</span></button>
+                    <button class="button button-full button-assertive" ng-click="resendOrder()" ng-if="order.status == 1"><span translate="RESEND">Resend</span></button>
                 </div>
             </ion-footer-bar>
         </ion-view>
@@ -90,7 +117,8 @@
         <ion-content>
             <ul class="list">
                 <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
-                <a href="#/event/check-in" class="item" menu-close>            <select-language></select-language>
+                <a href="#/event/check-in" class="item" menu-close>
+                    <select-language></select-language>
                 </a>
                 <a href="#/event/attendees" class="item" menu-close>Attendees</a>
             </ul>

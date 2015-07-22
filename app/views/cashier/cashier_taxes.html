@@ -1,0 +1,12 @@
+<ion-content class="padding-5">
+    <div class="list-taxes-discounts padding-5" ng-repeat="item in listTaxes" ng-click="addTax(item)">
+        <div class="item-tax-discount text-center">
+            <div class="value-tax-discount">
+                <span ng-if="item.amount">{{item.amount | currency}}</span>
+                <span ng-if="item.rate">{{item.rate}}%</span>
+            </div>
+            <div class="name-tax-discount text-dot">{{item.name}}</div>
+        </div>
+    </div>
+</ion-content>
+

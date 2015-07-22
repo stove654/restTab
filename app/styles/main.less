@@ -405,21 +405,36 @@
   color: #fff;
   font-size: 25px;
   width: 68px;
+  position: relative;
   &.active {
     color: #fff;
     background: rgba(0,0,0,.08);
+  }
+  .badge-orders {
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: #ef473a;
+    text-align: center;
+    top: 13px;
+    right: 10px;
   }
 }
 a {
   text-decoration: none;
   &:hover {
     text-decoration: none;
+    color: inherit;
   }
   &:focus {
     text-decoration: none;
+    color: inherit;
   }
   &:active {
     text-decoration: none;
+    color: inherit;
   }
 }
 .list-categories {
@@ -563,11 +578,14 @@ a {
 .padding-5 {
   padding: 5px;
 }
+.padding-10 {
+  padding: 10px;
+}
 .name-order-food {
-  font-weight: 600;
+  font-weight: 400;
 }
 .subtotal-order-food {
-  font-weight: 600;
+  font-weight: 400;
 }
 .food-order {
   font-size: 16px;
@@ -627,4 +645,43 @@ body {
   font-size: 18px;
   text-align: center;
   padding: 10px;
+}
+.list-taxes-discounts {
+  width: 25%;
+  float: left;
+}
+.item-tax-discount {
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 3px 0 #ddd;
+  border: 1px solid #ddd;
+}
+.value-tax-discount {
+  height: 40px;
+  font-weight: 400;
+  line-height: 40px;
+  font-size: 20px;
+}
+.order-list-taxes-discounts {
+  font-weight: 400;
+  i {
+    font-size: 24px;
+  }
+}
+.list-orders {
+  width: 100%/3;
+  float: left;
+  .order {
+    height: 160px;
+    background-color: #fff;
+    box-shadow: 0 3px 0 #e6e6e6;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    &.active {
+      border: 2px solid #424242;
+    }
+  }
+}
+.name-table-order {
+  font-size: 20px;
 }

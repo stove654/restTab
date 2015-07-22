@@ -13,12 +13,14 @@ angular.module('restTabApp')
         $scope.user = {};
         $scope.user = localStorageService.get('user');
         $scope.order = {};
-        var orders = [];
+        $scope.listOrders = [];
 
         $scope.clearOrder = function () {
             $scope.order = {};
             $scope.order.customerNumber = 1;
             $scope.order.foods = [];
+            $scope.order.discounts = [];
+            $scope.order.taxes = [];
             $scope.order.total = 0;
         };
 
@@ -27,7 +29,8 @@ angular.module('restTabApp')
             if (!localStorageService.get('orders')) {
                 localStorageService.set('orders', [])
             }
-            orders = localStorageService.get('orders');
+            $scope.listOrders = localStorageService.get('orders');
+            console.log($scope.listOrders)
         };
 
         $scope.addFoodOrder = function (data) {
@@ -43,7 +46,6 @@ angular.module('restTabApp')
                 $scope.order.foods.push(data);
             }
             $scope.order = OrderService.totalOrder($scope.order);
-                console.log($scope.order)
         };
 
         $scope.selectTableOrder = function (item) {
@@ -52,8 +54,43 @@ angular.module('restTabApp')
 
         $scope.createOrder = function () {
             $scope.order.id = orders.length;
-            orders.push($scope.order);
-            localStorageService.set('orders', orders)
+            $scope.listOrders.push($scope.order);
+            localStorageService.set('orders', $scope.listOrders)
+        };
+
+        $scope.addDiscount = function (discount) {
+            if (!OrderService.checkDiscountTax(discount, $scope.order.discounts)) {
+                $scope.order.discounts.push(discount);
+                $scope.order = OrderService.totalOrder($scope.order);
+            }
+        };
+
+        $scope.deleteTax = function (index) {
+            $scope.order.taxes.splice(index, 1);
+            $scope.order = OrderService.totalOrder($scope.order);
+        };
+
+        $scope.deleteDiscount = function (index) {
+            $scope.order.discounts.splice(index, 1);
+            $scope.order = OrderService.totalOrder($scope.order);
+        };
+
+        $scope.addTax = function (tax) {
+            if (!OrderService.checkDiscountTax(tax, $scope.order.taxes)) {
+                $scope.order.taxes.push(tax);
+                $scope.order = OrderService.totalOrder($scope.order);
+            }
+        };
+
+        $scope.createOrder = function () {
+            $scope.order.status = 1;
+            $scope.listOrders.push($scope.order);
+            localStorageService.set('orders', $scope.listOrders);
+        };
+
+        $scope.selectedOrder = function (item, index) {
+            $scope.order = angular.copy(item);
+            $scope.order.index = index;
         };
 
         _init();

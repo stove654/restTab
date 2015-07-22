@@ -1,0 +1,19 @@
+<ion-content class="padding-5">
+    <div class="list-orders padding-5" ng-repeat="item in listOrders" ng-click="selectedOrder(item, $index)">
+        <div class="order" ng-class="{active: $index == order.index}">
+            <div class="name-table-order padding-5" horizontal center-justified center layout>
+                <span style="padding-right: 10px;" class="text-muted"><i class="mdi mdi-content-paste"></i></span>
+                <span flex class="text-dot">{{item.table.name}}</span>
+            </div>
+            <div class="info-staff-order padding-5" horizontal center-justified center layout>
+                <span style="padding-right: 10px;" class="text-muted"><i class="mdi mdi-account-box"></i></span>
+                <span flex class="text-dot">{{item.staff.name}}</span>
+            </div>
+            <div class="info-order padding-5" horizontal center-justified center layout>
+                <span style="padding-right: 10px;" class="text-muted"><i class="mdi mdi-currency-usd"></i></span>
+                <span flex class="text-dot">{{item.total | currency}}</span>
+            </div>
+        </div>
+    </div>
+</ion-content>
+

@@ -19,6 +19,7 @@ angular.module('restTabApp')
 
         api.getCategories = function () {
             return $http.get(url.categories).then(function(data) {
+                api.categories = data.data;
                 return data.data;
             });
         };
@@ -31,6 +32,7 @@ angular.module('restTabApp')
 
         api.getFoodsByCategory = function (id) {
             return $http.get(url.foods + '/category/' + id).then(function(data) {
+                api.foods = data.data;
                 return data.data;
             });
         };

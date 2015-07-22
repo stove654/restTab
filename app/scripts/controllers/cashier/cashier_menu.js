@@ -18,7 +18,7 @@ angular.module('restTabApp')
         $scope.getCategories = function () {
             MenuService.getCategories().then(function(data){
               if (data.length) {
-                $scope.selectCategory(data[0]);
+                $scope.selectCategory(MenuService.categories[0]);
                 $scope.getFoodsByCategory();
               }
               $scope.categories = data;

@@ -10,6 +10,8 @@ module.exports = function(app) {
     app.use('/api/categories', require('./api/category'));
     app.use('/api/foods', require('./api/food'));
     app.use('/api/tables', require('./api/table'));
+    app.use('/api/taxes', require('./api/tax'));
+    app.use('/api/discounts', require('./api/discount'));
 
 
     /*    app.use('/auth', require('./auth'));

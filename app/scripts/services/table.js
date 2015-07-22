@@ -18,6 +18,7 @@ angular.module('restTabApp')
 
         api.getTables = function () {
             return $http.get(url.tables).then(function(data) {
+                api.tables = data.data;
                 return data.data;
             });
         };

@@ -15,7 +15,8 @@ angular
         'LocalStorageModule',
         'ui.bootstrap',
         'config',
-        'ui.utils.masks'
+        'ui.utils.masks',
+        'angularMoment'
     ])
 
     .run(function ($rootScope, $state, $location, SessionService, localStorageService) {
@@ -168,6 +169,16 @@ angular
                 },
                 data : {requireLogin : true }
             })
+            .state('cashier.calculator', {
+                url: "/calculator",
+                views: {
+                    'menuCashierContent' :{
+                        templateUrl: "views/cashier/cashier_calculator.html",
+                        controller: 'CashierCalculatorCtrl'
+                    }
+                },
+                data : {requireLogin : true }
+            })
 
         $urlRouterProvider.otherwise("/login");
 
@@ -232,6 +243,13 @@ angular
                 TOTAL_TAXES: 'Total taxes',
                 TOTAL_DISCOUNTS: 'Total discounts',
                 RESEND: 'Resend',
+                RUNNING: 'Running',
+                TAB_CREATE: 'Tab <i class="mdi mdi-library-plus"></i> to create new order',
+                OR: 'or',
+                TAB_SELECT: 'Tab <i class="mdi mdi-basket"></i> to see orders',
+                WITHDRAW: 'Withdraw',
+                DEPOSIT: 'Deposit',
+                BALANCE: 'Balance',
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -269,6 +287,13 @@ angular
                 TOTAL_TAXES: 'Tổng tiền thuế',
                 TOTAL_DISCOUNTS: 'Tổng tiền giảm giá',
                 RESEND: 'Gửi lại',
+                RUNNING: 'Đang hoạt động',
+                TAB_CREATE: 'Chọn <i class="mdi mdi-library-plus"></i> để tạo mới order',
+                OR: 'hoặc',
+                TAB_SELECT: 'Chọn <i class="mdi mdi-basket"></i> để xem danh sách orders',
+                WITHDRAW: 'Rút tiền',
+                DEPOSIT: 'Gửi tiền',
+                BALANCE: 'Số dư',
             });
         $translateProvider.preferredLanguage('vi');
     })

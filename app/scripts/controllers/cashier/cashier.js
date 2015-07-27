@@ -8,12 +8,13 @@
  * Controller of the restTabApp
  */
 angular.module('restTabApp')
-    .controller('CashierCtrl', function ($scope, localStorageService, OrderService) {
+    .controller('CashierCtrl', function ($scope, localStorageService, OrderService, $state) {
 
         $scope.user = {};
         $scope.user = localStorageService.get('user');
         $scope.order = {};
         $scope.listOrders = [];
+        console.log($scope.user);
 
         $scope.clearOrder = function () {
             $scope.order = {};
@@ -22,6 +23,7 @@ angular.module('restTabApp')
             $scope.order.discounts = [];
             $scope.order.taxes = [];
             $scope.order.total = 0;
+            $scope.order.isConfirm = false;
         };
 
         var _init = function () {
@@ -52,12 +54,6 @@ angular.module('restTabApp')
             $scope.order.table = item;
         };
 
-        $scope.createOrder = function () {
-            $scope.order.id = orders.length;
-            $scope.listOrders.push($scope.order);
-            localStorageService.set('orders', $scope.listOrders)
-        };
-
         $scope.addDiscount = function (discount) {
             if (!OrderService.checkDiscountTax(discount, $scope.order.discounts)) {
                 $scope.order.discounts.push(discount);
@@ -84,13 +80,37 @@ angular.module('restTabApp')
 
         $scope.createOrder = function () {
             $scope.order.status = 1;
+            $scope.order.id =  $scope.listOrders.length;
+            $scope.order.staff = angular.copy($scope.user);
+            $scope.order.staff.password = '';
+            $scope.order.creatAt = new Date();
+            $scope.order.updateAt = new Date();
             $scope.listOrders.push($scope.order);
             localStorageService.set('orders', $scope.listOrders);
         };
 
         $scope.selectedOrder = function (item, index) {
-            $scope.order = angular.copy(item);
-            $scope.order.index = index;
+            if (index != $scope.order.index) {
+                $scope.order = angular.copy(item);
+                $scope.order.index = index;
+            } else {
+                $scope.clearOrder();
+            }
+        };
+
+        $scope.subCustomerNumber = function () {
+            if ($scope.order.customerNumber) {
+                $scope.order.customerNumber --;
+            }
+        };
+
+        $scope.addCustomerNumber = function () {
+            $scope.order.customerNumber ++;
+        };
+
+        $scope.goOrder = function () {
+            $scope.clearOrder();
+            $state.go('cashier.menu')
         };
 
         _init();

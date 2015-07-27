@@ -37,6 +37,8 @@ module.exports = function(config) {
       'bower_components/string-mask/src/string-mask.js',
       'bower_components/angular-input-masks/angular-input-masks-standalone.min.js',
       'bower_components/lodash/lodash.js',
+      'bower_components/moment/moment.js',
+      'bower_components/angular-moment/angular-moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

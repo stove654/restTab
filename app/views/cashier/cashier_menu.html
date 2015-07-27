@@ -9,7 +9,15 @@
     <ion-content class="list-menus" flex>
         <div class="break-menu" horizontal layout>
             <div class="input-search-food">
+<!--
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ 'SEARCH_FOOD' | translate }}" ng-model="search.name">
+-->
+                <div class="input-group">
+                    <input type="text" id="filter" placeholder="Search" class="form-control input-sm bg-light no-border rounded padder" ng-model="search.name">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
             </div>
             <div flex></div>
             <div class="select-column">

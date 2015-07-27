@@ -13,12 +13,18 @@
                     </div>
                 </div>
                 <div flex></div>
+                <a class="tab-active" horizontal center-justified center layout ui-sref="cashier.calculator" ui-sref-active="active">
+                    <i class="mdi mdi-calculator"></i>
+                </a>
                 <a class="tab-active" horizontal center-justified center layout ui-sref="cashier.orders" ui-sref-active="active">
                     <i class="mdi mdi-basket"></i>
                     <span class="badge-orders" horizontal center-justified center layout>{{listOrders.length}}</span>
                 </a>
                 <a class="tab-active" horizontal center-justified center layout ui-sref="cashier.menu" ui-sref-active="active">
                     <i class="mdi mdi-apps"></i>
+                </a>
+                <a class="tab-active" horizontal center-justified center layout ng-click="goOrder()">
+                    <i class="mdi mdi-library-plus"></i>
                 </a>
             </ion-header-bar>
             <ion-nav-view name="menuCashierContent"></ion-nav-view>
@@ -34,14 +40,28 @@
                     <div class="button-order-child bold" horizontal start-justified center layout class="dropdown-toggle" dropdown-toggle>
                         <i class="mdi mdi-account-multiple-plus"></i>{{order.customerNumber}}
                     </div>
-                    <ul class="dropdown-menu">
-                        <li>
-                            fdsafdds
+                    <ul class="dropdown-menu dropdown-customer">
+                        <li horizontal layout>
+                            <div class="button-quantity-customer" ng-click="subCustomerNumber();$event.stopPropagation()">
+                                <i class="mdi mdi-minus"></i>
+                            </div>
+                            <div flex  horizontal layout center center-justified>{{order.customerNumber}}</div>
+                            <div class="button-quantity-customer" ng-click="addCustomerNumber(); $event.stopPropagation()">
+                                <i class="mdi mdi-plus"></i>
+                            </div>
                         </li>
+                        <li class="text-center">Customer number</li>
                     </ul>
                 </div>
             </ion-header-bar>
             <ion-content style="bottom: 150px">
+                <div ng-if="!order.foods.length" style="height: 100%" horizontal layout center center-justified>
+                    <div class="no-foods text-center text-muted">
+                        <div><span translate="TAB_CREATE"></span></div>
+                        <div><span translate="OR"></span></div>
+                        <div><span translate="TAB_SELECT"></span></div>
+                    </div>
+                </div>
                 <div ng-if="order.foods.length" class="list-order-foods">
                     <div class="food-order padding-5" ng-repeat="item in order.foods" >
                         <div horizontal layout>
@@ -104,7 +124,7 @@
                 </div>
                 <div class="group-button-action-order padding-5">
                     <button class="button button-full button-assertive" ng-click="createOrder()" ng-if="!order.status"><span translate="CREATE_NEW_ORDER">Create new order</span></button>
-                    <button class="button button-full button-assertive" ng-click="resendOrder()" ng-if="order.status == 1"><span translate="RESEND">Resend</span></button>
+                    <button class="button button-full button-assertive" ng-click="resendOrder()" ng-if="order.status == 1" ng-disabled="!order.isConfirm"><span translate="RESEND">Resend</span></button>
                 </div>
             </ion-footer-bar>
         </ion-view>

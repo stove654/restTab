@@ -32,10 +32,10 @@ angular.module('restTabApp')
                     data.discount.rate = parseFloat(data.discount.rate);
                     data.subTotal = data.subTotal - (data.subTotal * data.discount.rate)/100;
                 }
-                data.customId = data.customId + value._id + data.discount._id;
+                data.customId = data.customId + data._id + data.discount._id;
             }
             if (data.note) {
-                data.customId = data.customId + value._id + data.discount._id + data.note;
+                data.customId = data.customId + data._id + data.discount._id + data.note;
             }
             console.log(data);
         }

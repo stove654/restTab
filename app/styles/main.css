@@ -349,7 +349,7 @@
   width: 33%;
   float: left;
   left: initial;
-  box-shadow: 0 0 3px #626262;
+  box-shadow: 0 0 3px #D0D0D0;
 }
 .cashier-header-content {
   background: #512DA8;
@@ -576,6 +576,9 @@ a:active {
   height: 150px;
   display: block;
 }
+.footer-bar-order.active {
+  height: 202px;
+}
 .group-list-button-app .btn-group {
   width: 100%;
 }
@@ -649,7 +652,7 @@ body {
 .list-orders .order {
   height: 145px;
   background-color: #fff;
-  box-shadow: 0 3px 0 #e6e6e6;
+  box-shadow: 0 0 3px #C3C3C3;
   border: 1px solid #ddd;
   border-radius: 4px;
   position: relative;
@@ -734,4 +737,53 @@ body {
 }
 .calculator-number {
   height: 100%;
+}
+.height-1-2 {
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+.height-1-2.activated {
+  background: #eee;
+}
+#toast-container > div {
+  opacity: 1;
+}
+.tender {
+  padding: 30px 20px;
+  font-size: 20px;
+  border: 1px solid #ddd;
+}
+.after-tender {
+  padding: 20px 20px;
+  border: 1px solid #ddd;
+  color: #666;
+  font-size: 16px;
+  height: 64px;
+}
+.after-tender.activated {
+  background: #eee;
+}
+.back-space {
+  font-size: 25px;
+}
+.back-space.activated {
+  background: #eee;
+}
+.keyboard-clear {
+  font-size: 22px;
+  color: #ef473a;
+}
+.keyboard-clear.activated {
+  background: #eee;
+}
+.keyboard-confirm {
+  color: #5cb85c;
+  font-size: 35px;
+}
+.keyboard-confirm.activated {
+  background: #eee;
+}
+.activeMethod {
+  background-color: #673dcb !important;
+  color: #fff !important;
 }

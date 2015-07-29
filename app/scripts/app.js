@@ -16,7 +16,8 @@ angular
         'ui.bootstrap',
         'config',
         'ui.utils.masks',
-        'angularMoment'
+        'angularMoment',
+        'toaster'
     ])
 
     .run(function ($rootScope, $state, $location, SessionService, localStorageService) {
@@ -250,6 +251,14 @@ angular
                 WITHDRAW: 'Withdraw',
                 DEPOSIT: 'Deposit',
                 BALANCE: 'Balance',
+                NO_TABLE: 'Not selected table',
+                TENDER: 'Tender',
+                CHANGE_MONEY: 'Change',
+                UPDATE: 'Update',
+                DELETE: 'Delete',
+                CASH: 'Cash',
+                CARD: 'Card',
+                HOLD: 'hold',
             })
             .translations('vi', {
                 EMAIL_ADDRESS: 'Địa chỉ email',
@@ -294,6 +303,14 @@ angular
                 WITHDRAW: 'Rút tiền',
                 DEPOSIT: 'Gửi tiền',
                 BALANCE: 'Số dư',
+                NO_TABLE: 'Chưa chọn bàn',
+                TENDER: 'Khách đưa',
+                CHANGE_MONEY: 'Trả lại',
+                UPDATE: 'Cập nhật',
+                DELETE: 'Xóa',
+                CASH: 'Tiền mặt',
+                CARD: 'Thẻ',
+                HOLD: 'Nợ',
             });
         $translateProvider.preferredLanguage('vi');
     })

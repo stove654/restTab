@@ -58,31 +58,25 @@ angular.module('restTabApp')
         $scope.openFood = function (data) {
             var food = angular.copy(data);
             food.quantity = 1;
-            if (food.options.length) {
-                var modalInstance = $modal.open({
-                    animation: false,
-                    templateUrl: 'views/cashier/modal/food.html',
-                    controller: 'CashierFoodCtrl',
-                    size: 'md',
-                    windowClass: 'default-modal',
-                    scope: $scope,
-                    resolve: {
-                        food: function () {
-                            return food;
-                        }
+            var modalInstance = $modal.open({
+                animation: false,
+                templateUrl: 'views/cashier/modal/food.html',
+                controller: 'CashierFoodCtrl',
+                size: 'md',
+                windowClass: 'default-modal',
+                scope: $scope,
+                resolve: {
+                    food: function () {
+                        return food;
                     }
-                });
+                }
+            });
 
-                modalInstance.result.then(function (food) {
-                    $scope.addFoodOrder(food);
-                }, function () {
-
-                });
-            } else {
-                FoodService.subTotalFood(food);
+            modalInstance.result.then(function (food) {
                 $scope.addFoodOrder(food);
-            }
+            }, function () {
 
+            });
         };
 
         var _init = function () {

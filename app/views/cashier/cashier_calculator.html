@@ -6,6 +6,7 @@
             </button>
         </div>
         <div flex horizontal layout class="calculator-balance" center>
+            <div class="text-muted padding-5"><i class="mdi mdi-information-outline"></i></div>
             <div class="text-muted" translate="BALANCE"></div>
             <div flex></div>
             <div>{{0 | currency}}</div>
@@ -17,74 +18,88 @@
         </div>
     </div>
     <div class="content-calculator" flex vertical layout>
-        <div class="tender">
-
+        <div class="tender" horizontal layout>
+            <div flex>
+                <span translate="TENDER"></span>
+            </div>
+            <div>
+                {{dataCalculator.tender | currency}}
+            </div>
         </div>
-        <div class="after-tender">
-
+        <div class="after-tender" >
+          <div ng-show="dataCalculator.change > 0" horizontal layout>
+            <div flex>
+              <span translate="CHANGE_MONEY"></span>
+            </div>
+            <div>
+              {{dataCalculator.change | currency}}
+            </div>
+          </div>
         </div>
         <div class="calculator-number" flex vertical layout>
             <div flex horizontal layout>
                 <div class="width-4" flex vertical layout>
-                    <div class="height-1-2" flex>
-                        fsf
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('7')">
+                        7
                     </div>
-                    <div class="height-1-2" flex>
-fwqfwq
-                    </div>
-                </div>
-                <div class="width-4" flex vertical layout>
-                    <div class="height-1-2" flex>
-fwqf
-                    </div>
-                    <div class="height-1-2" flex>
-dwqd
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('4')">
+                        4
                     </div>
                 </div>
                 <div class="width-4" flex vertical layout>
-                    <div class="height-1-2" flex>
-gegew
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('8')">
+                        8
                     </div>
-                    <div class="height-1-2" flex>
-dfqf
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('5')">
+                        5
                     </div>
                 </div>
                 <div class="width-4" flex vertical layout>
-                    <div class="height-1-2" flex>
-dwqdwq
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('9')">
+                        9
                     </div>
-                    <div class="height-1-2" flex>
-dwqgwq
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('6')">
+                        6
+                    </div>
+                </div>
+                <div class="width-4" flex vertical layout>
+                    <div class="height-1-2 back-space" flex horizontal layout center-justified center ng-click="backSpaceCalculator()">
+                        <i class="mdi mdi-keyboard-backspace"></i>
+                    </div>
+                    <div class="height-1-2 keyboard-clear" flex horizontal layout center-justified center ng-click="keyBoardClear()">
+                        &#67;
                     </div>
                 </div>
             </div>
             <div flex horizontal layout>
                 <div class="width-4" flex vertical layout>
-                    <div class="height-1-2" flex>
-grehrwe
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('1')">
+                        1
                     </div>
-                    <div class="height-1-2" flex>
-feqfew
-                    </div>
-                </div>
-                <div class="width-4" flex vertical layout>
-                    <div class="height-1-2" flex>
-gewqge
-                    </div>
-                    <div class="height-1-2" flex>
-fewf
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('0')">
+                        0
                     </div>
                 </div>
                 <div class="width-4" flex vertical layout>
-                    <div class="height-1-2" flex>
-fewqfv
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('2')">
+                        2
                     </div>
-                    <div class="height-1-2" flex>
-hrqhr
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('00')">
+                        00
                     </div>
                 </div>
                 <div class="width-4" flex vertical layout>
-fewqfew
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('3')">
+                        3
+                    </div>
+                    <div class="height-1-2" flex horizontal layout center-justified center ng-click="addNumber('000')">
+                        000
+                    </div>
+                </div>
+                <div class="width-4" flex vertical layout>
+                    <div class="height-1-2 keyboard-confirm" flex horizontal layout center-justified center ng-click="keyBoardConfirm()">
+                        <i class="mdi mdi-check"></i>
+                    </div>
                 </div>
             </div>
         </div>

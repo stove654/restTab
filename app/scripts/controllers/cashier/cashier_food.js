@@ -41,4 +41,5 @@ angular.module('restTabApp')
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
+
     });

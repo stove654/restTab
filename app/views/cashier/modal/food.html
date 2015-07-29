@@ -27,7 +27,9 @@
         </div>
     </div>
     <div class="group-button">
-        <button class="btn btn-primary" ng-click="ok()"><span translate="ADD"></span></button>
+        <button class="btn btn-primary" ng-click="ok()" ng-hide="food.isEdit"><span translate="ADD"></span></button>
+        <button class="btn btn-warning" ng-click="ok()" ng-show="food.isEdit"><span translate="UPDATE"></span></button>
         <button class="btn btn-warning pull-left" ng-click="cancel()"><span translate="CANCEL"></span></button>
+        <button class="btn btn-danger pull-left" ng-click="deleteFood(food)" ng-show="food.isEdit" style="margin: 0 10px !important;"><span translate="DELETE"></span></button>
     </div>
 </div>

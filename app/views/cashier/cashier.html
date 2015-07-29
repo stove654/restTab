@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div ng-if="order.foods.length" class="list-order-foods">
-                    <div class="food-order padding-5" ng-repeat="item in order.foods" >
+                    <div class="food-order padding-5" ng-repeat="item in order.foods" ng-click="editFood(item, $index)">
                         <div horizontal layout>
                             <div flex horizontal center layout class="name-order-food text-dot padding-5">
                                 {{item.name}}
@@ -109,11 +109,18 @@
                     </div>
                 </div>
             </ion-content>
-            <ion-footer-bar class="footer-bar-order padding-5">
+            <ion-footer-bar class="footer-bar-order padding-5" ng-class="{active: state == '/calculator'}">
                 <div class="order-total padding-5" horizontal layout center>
                     <span translate="TOTAL"></span>
                     <span flex></span>
                     <span class="pull-right">{{order.total | currency}}</span>
+                </div>
+                <div class="group-list-button-app padding-5" ng-show="state == '/calculator'">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" translate="CASH" ng-click="paymentMeThod(1)" ng-class="{activeMethod: order.paymentMethod == 1}"></button>
+                    <button type="button" class="btn btn-default" translate="CARD" ng-click="paymentMeThod(2)" ng-class="{activeMethod: order.paymentMethod == 2}"></button>
+                    <button type="button" class="btn btn-default" translate="HOLD" ng-click="paymentMeThod(3)" ng-class="{activeMethod: order.paymentMethod == 3}"></button>
+                  </div>
                 </div>
                 <div class="group-list-button-app padding-5">
                     <div class="btn-group" role="group">
@@ -123,7 +130,7 @@
                     </div>
                 </div>
                 <div class="group-button-action-order padding-5">
-                    <button class="button button-full button-assertive" ng-click="createOrder()" ng-if="!order.status"><span translate="CREATE_NEW_ORDER">Create new order</span></button>
+                    <button class="button button-full button-assertive" ng-click="createOrder()" ng-if="!order.status" ng-disabled="!order.foods.length"><span translate="CREATE_NEW_ORDER">Create new order</span></button>
                     <button class="button button-full button-assertive" ng-click="resendOrder()" ng-if="order.status == 1" ng-disabled="!order.isConfirm"><span translate="RESEND">Resend</span></button>
                 </div>
             </ion-footer-bar>

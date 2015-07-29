@@ -8,7 +8,11 @@
  * Service in the restTabApp.
  */
 angular.module('restTabApp')
-    .service('OrderService', function (FoodService) {
+    .service('OrderService', function (FoodService, $http, ENV) {
+
+        var url = {
+            orders: ENV.apiEndpoint + 'orders'
+        };
 
         this.totalOrder = function (order) {
             order.total = 0;
@@ -56,6 +60,12 @@ angular.module('restTabApp')
                 }
             }
             return check;
+        };
+
+        this.paymentOrder = function (params) {
+            return $http.post(url.orders, params).then(function(data) {
+                return data.data;
+            });
         }
 
     });

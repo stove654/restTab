@@ -185,6 +185,12 @@ angular.module('restTabApp')
           $scope.order.paymentMethod = number;
         };
 
+        $scope.deleteOrder = function () {
+            $scope.listOrders.splice($scope.order.index, 1);
+            $scope.clearOrder();
+            localStorageService.set('orders', $scope.listOrders);
+        };
+
         _init();
 
     });
